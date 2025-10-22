@@ -3,13 +3,16 @@
 #include <string>
 #include <algorithm>
 #include <iterator>
+
 using namespace std;
 using namespace filesystem;
 
 string formRemoveFilename(string filePath) {
     string temp_str = "Temp";
-    cout<<endl<<filePath.find("Temp")+2<<" ; "<<filePath[filePath.find("Temp")+temp_str.size()+1]<<endl;
-    return "";
+    cout<<filePath.find("Temp")+temp_str.size()+1<<" ; "<<filePath[filePath.find("Temp")+temp_str.size()+1]<<endl;
+    int dist = filePath.size()-1 - filePath.find("Temp")+temp_str.size()+1;
+    string formed_str = filePath.substr(filePath.find("Temp")+temp_str.size()+1, dist);
+    return formed_str;
 }
 
 int main() {
@@ -20,6 +23,6 @@ int main() {
         // Output the path of the file or subdirectory
         cout << "File: " << entry.path() << endl;
         string path_string_u8 = entry.path().u8string();
-        formRemoveFilename(path_string_u8);
+        cout<<formRemoveFilename(path_string_u8)<<endl<<endl;
     }
 }
