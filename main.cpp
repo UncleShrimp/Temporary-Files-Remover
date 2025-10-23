@@ -24,5 +24,15 @@ int main() {
         cout << "File: " << entry.path() << endl;
         string path_string_u8 = entry.path().u8string();
         cout<<formRemoveFilename(path_string_u8)<<endl<<endl;
+        string filename = formRemoveFilename(path_string_u8);
+        // Attempt to remove the file
+        int result = remove(filename);
+
+        if (result == 0) {
+            std::cout << "File '" << filename << "' deleted successfully." << std::endl;
+        } else {
+            std::cerr << "Error deleting file '" << filename << "'. Error code: " << result << std::endl;
+            // You can use perror("Error message") to get a more descriptive error message
+        }
     }
 }
